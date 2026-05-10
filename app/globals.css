@@ -1,62 +1,118 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #edece4;
-  --cream-light: #f5f4ec;
-  --olive: #4a5d23;
-  --olive-light: #6b7b4a;
-  --olive-dark: #3a4a1e;
-  --olive-faint: rgba(74, 93, 35, 0.06);
-  --olive-mute: rgba(74, 93, 35, 0.16);
+  /* Montone-style palette */
+  --primary: #504fed;
+  --primary-2: #6e5cf5;
+  --primary-3: #843dff;
+  --dark: #111111;
+  --white: #ffffff;
+  --off-white: #f0f0f0;
+  --lavender: #e8e8ff;
+  --deep-lavender: #c8c6fb;
+  --teal: #4ecdc4;
 
-  /* Aliases used by older components */
-  --background: var(--cream);
-  --surface: var(--cream-light);
-  --surface-muted: var(--cream-light);
-  --surface-strong: #e2e0d2;
-  --surface-opaque: rgb(237 236 228 / 0.85);
-  --border: var(--olive-faint);
-  --border-strong: var(--olive-mute);
-  --text-strong: var(--olive);
-  --text-muted: var(--olive-light);
-  --text-subtle: rgba(74, 93, 35, 0.55);
-  --accent: #e87a4f;
+  /* Aliases for the existing component code */
+  --background: var(--white);
+  --surface: var(--white);
+  --surface-muted: var(--off-white);
+  --surface-strong: var(--lavender);
+  --surface-opaque: rgb(255 255 255 / 0.78);
+  --border: rgba(17, 17, 17, 0.08);
+  --border-strong: rgba(17, 17, 17, 0.18);
+  --text-strong: var(--dark);
+  --text-muted: rgba(17, 17, 17, 0.62);
+  --text-subtle: rgba(17, 17, 17, 0.4);
+  --text-ghost: rgba(17, 17, 17, 0.18);
+  --accent: var(--primary);
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-cream-light: var(--cream-light);
-  --color-olive: var(--olive);
-  --color-olive-light: var(--olive-light);
-  --color-olive-dark: var(--olive-dark);
+  --color-primary: var(--primary);
+  --color-primary-2: var(--primary-2);
+  --color-primary-3: var(--primary-3);
+  --color-dark: var(--dark);
+  --color-off-white: var(--off-white);
+  --color-lavender: var(--lavender);
+  --color-deep-lavender: var(--deep-lavender);
 
-  --color-background: var(--cream);
-  --color-surface: var(--cream-light);
-  --color-surface-muted: var(--cream-light);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
   --color-surface-strong: var(--surface-strong);
-  --color-border: var(--olive-faint);
-  --color-border-strong: var(--olive-mute);
-  --color-text-strong: var(--olive);
-  --color-text-muted: var(--olive-light);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text-strong: var(--text-strong);
+  --color-text-muted: var(--text-muted);
   --color-text-subtle: var(--text-subtle);
+  --color-text-ghost: var(--text-ghost);
   --color-accent: var(--accent);
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
 
 html,
 body {
   font-family: var(--font-sans);
-  background: var(--cream);
-  color: var(--olive);
+  background: var(--background);
+  color: var(--text-strong);
+  font-feature-settings: "ss01", "cv11";
 }
 
 .font-display {
   font-family: var(--font-display);
 }
 
-/* Subtle link underline animation */
+/* Hero word swap — exact spec from the prompt */
+@keyframes word-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-20px); }
+}
+@keyframes word-enter {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.word-exit {
+  animation: word-exit 220ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+.word-enter {
+  animation: word-enter 400ms ease forwards;
+}
+
+/* Scroll cue line — left-to-right loop */
+@keyframes scroll-line {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+.scroll-line {
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  animation: scroll-line 2s linear infinite;
+}
+
+/* Hero entrance stagger */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  opacity: 0;
+  animation: fade-up 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Loader fade-up (existing) */
+@keyframes loader-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.loader-fade-up {
+  animation: loader-fade-up 220ms ease-out;
+}
+
+/* Underline-grow link hover */
 .link-underline {
   position: relative;
   display: inline-block;
@@ -75,148 +131,49 @@ body {
   width: 100%;
 }
 
-/* Floating-blob keyframes */
-@keyframes drift-a {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(30px, -40px) scale(1.05); }
-  100% { transform: translate(0, 0) scale(1); }
+/* Diagonal arrow hover (for the about side links) */
+.arrow-up-right {
+  display: inline-block;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-@keyframes drift-b {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(-40px, 30px) scale(1.07); }
-  100% { transform: translate(0, 0) scale(1); }
+.group:hover .arrow-up-right,
+.peer-hover\:arrow-up-right:hover {
+  transform: translate(4px, -4px);
 }
-@keyframes drift-c {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(20px, 40px) scale(0.95); }
-  100% { transform: translate(0, 0) scale(1); }
+
+/* Gradient number text (services) */
+.gradient-number {
+  background-image: linear-gradient(180deg, var(--primary-3), var(--deep-lavender));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-@keyframes pulse-soft {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.05); }
+
+/* Marquee for the client/skill ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
+.marquee-track {
+  animation: marquee 30s linear infinite;
 }
+
+/* Orbit rotation for the practice-orb section */
 @keyframes orbit-spin {
   to { transform: rotate(360deg); }
 }
 
-/* Registered custom property so GSAP can interpolate the angle smoothly */
-@property --sweep {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.disc-wedge {
-  background: conic-gradient(
-    from -90deg,
-    var(--wedge-color) 0deg,
-    var(--wedge-color) var(--sweep, 0deg),
-    transparent var(--sweep, 0deg),
-    transparent 360deg
-  );
-}
-@keyframes loader-fade-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.loader-fade-up {
-  animation: loader-fade-up 220ms ease-out;
-}
-
-/* SkillsOrbit — unique idle float paths per orb */
-@keyframes orb-float-a {
-  0%, 100% { transform: translate(0, 0); }
-  25%      { transform: translate(22px, -16px); }
-  50%      { transform: translate(0, -30px); }
-  75%      { transform: translate(-18px, -12px); }
-}
-@keyframes orb-float-b {
-  0%, 100% { transform: translate(0, 0); }
-  33%      { transform: translate(-22px, 14px); }
-  66%      { transform: translate(16px, 20px); }
-}
-@keyframes orb-float-c {
-  0%, 100% { transform: translate(0, 0); }
-  50%      { transform: translate(10px, -14px); }
-}
-.orb-float-a { animation: orb-float-a 15s ease-in-out infinite; }
-.orb-float-b { animation: orb-float-b 18s ease-in-out infinite; }
-.orb-float-c { animation: orb-float-c 12s ease-in-out infinite; }
-
-/* ProcessScroll — gentle stack bob and per-disc wobble */
-@keyframes stack-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-.stack-bob { animation: stack-bob 6s ease-in-out infinite; }
-
-@keyframes disc-wobble {
-  0%, 100% { transform: rotateZ(-0.6deg); }
-  50%      { transform: rotateZ(0.6deg); }
-}
-.disc-wobble-0 { animation: disc-wobble 10s ease-in-out infinite; }
-.disc-wobble-1 { animation: disc-wobble 11s ease-in-out -2s infinite; }
-.disc-wobble-2 { animation: disc-wobble 12s ease-in-out -4s infinite; }
-.disc-wobble-3 { animation: disc-wobble 13s ease-in-out -6s infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-  .orb-float-a, .orb-float-b, .orb-float-c,
-  .stack-bob,
-  .disc-wobble-0, .disc-wobble-1, .disc-wobble-2, .disc-wobble-3 {
-    animation: none !important;
-  }
-}
-
-/* Hover-fill name effect: ghost text by default, gradient sweeps in on hover */
-.hover-fill-wrap {
-  position: relative;
-  display: inline-block;
-  cursor: default;
-}
-.hover-fill-ghost {
-  color: rgba(74, 93, 35, 0.22);
-}
-.hover-fill-top {
-  position: absolute;
-  inset: 0;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 800ms cubic-bezier(0.65, 0, 0.35, 1);
-  pointer-events: none;
-}
-.role-card:hover .hover-fill-top,
-.hover-fill-wrap:hover .hover-fill-top {
-  clip-path: inset(0 0 0 0);
-}
-
-.blob-a { animation: drift-a 14s ease-in-out infinite; }
-.blob-b { animation: drift-b 18s ease-in-out infinite; }
-.blob-c { animation: drift-c 16s ease-in-out infinite; }
-.pulse-soft { animation: pulse-soft 8s ease-in-out infinite; }
-.spin-slow { animation: spin-slow 30s linear infinite; }
-
-/* Word-by-word fade-in */
-@keyframes word-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.word-in {
-  display: inline-block;
-  opacity: 0;
-  animation: word-in 600ms ease forwards;
+/* Footer availability dot — soft outward pulse */
+@keyframes pulse-ping {
+  0%   { transform: scale(1);   opacity: 0.65; }
+  75%, 100% { transform: scale(2.3); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob-a, .blob-b, .blob-c, .pulse-soft, .spin-slow, .word-in,
-  .orbit-spin, [style*="orbit-spin"] {
-    animation: none !important;
+  .word-exit, .word-enter, .scroll-line, .fade-up,
+  .loader-fade-up, .marquee-track {
+    animation: none;
   }
-  .word-in { opacity: 1; transform: none; }
   .link-underline::before { transition: none; }
+  .arrow-up-right { transition: none; }
 }

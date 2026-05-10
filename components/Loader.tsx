@@ -19,8 +19,8 @@ const hellos = [
   "Привет",
 ];
 
-const DURATION = 3200; // ms — total loader run
-const HELLO_INTERVAL = 140; // ms — greeting cycle
+const DURATION = 3000;
+const HELLO_INTERVAL = 130;
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
@@ -44,8 +44,8 @@ export default function Loader() {
       if (t < 1) {
         raf = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => setHidden(true), 250);
-        setTimeout(() => setRemoved(true), 1050);
+        setTimeout(() => setHidden(true), 220);
+        setTimeout(() => setRemoved(true), 1000);
       }
     };
     raf = requestAnimationFrame(tick);
@@ -61,29 +61,66 @@ export default function Loader() {
     <div
       aria-hidden={hidden}
       role="status"
-      className={`fixed inset-0 z-[200] grid place-items-center bg-[color:var(--cream)] transition-opacity duration-700 ease-out ${
+      style={{
+        background:
+          "linear-gradient(145deg, #ffffff 0%, #f0f0f0 25%, #e8e8ff 55%, #c8c6fb 100%)",
+      }}
+      className={`fixed inset-0 z-[200] grid place-items-center transition-opacity duration-700 ease-out ${
         hidden ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
-      <div className="flex flex-col items-center gap-10">
+      <div className="flex flex-col items-center gap-8">
+        {/* Cycling greeting */}
         <p
           key={helloIdx}
-          className="font-display italic text-[40px] sm:text-[56px] lg:text-[80px] leading-none text-[color:var(--olive)] loader-fade-up"
+          className="font-display italic loader-fade-up leading-none"
+          style={{
+            color: "#1a1a1a",
+            fontSize: "clamp(28px, 4vw, 48px)",
+            fontWeight: 500,
+          }}
         >
           {hellos[helloIdx]}
         </p>
 
-        <div className="flex flex-col items-center gap-3">
-          <p className="font-display text-[64px] sm:text-[88px] lg:text-[120px] leading-none font-bold text-[color:var(--olive)] tabular-nums">
-            {progress}%
-          </p>
-          <div className="w-[200px] h-[2px] bg-[color:var(--olive-mute)] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-[#a83c1f] transition-[width] duration-200 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
+        {/* Big counter */}
+        <p
+          className="font-display leading-none tabular-nums"
+          style={{
+            color: "#1a1a1a",
+            fontSize: "clamp(72px, 10vw, 144px)",
+            fontWeight: 700,
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {progress}%
+        </p>
+
+        {/* Progress bar */}
+        <div
+          className="rounded-full overflow-hidden"
+          style={{
+            width: "min(220px, 60vw)",
+            height: "2px",
+            background: "rgba(17, 17, 17, 0.12)",
+          }}
+        >
+          <div
+            className="h-full rounded-full"
+            style={{
+              width: `${progress}%`,
+              background: "#ff5b1f",
+              transition: "width 200ms ease-out",
+            }}
+          />
         </div>
+
+        <p
+          className="text-[11px] uppercase font-medium"
+          style={{ color: "#6b6b66", letterSpacing: "0.18em" }}
+        >
+          lohith/regalla — loading
+        </p>
       </div>
     </div>
   );

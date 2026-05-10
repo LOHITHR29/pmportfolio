@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import SkillsOrbit from "@/components/SkillsOrbit";
-import ProcessScroll from "@/components/ProcessScroll";
+import Statement from "@/components/Statement";
+import PrinciplesStack from "@/components/PrinciplesStack";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -10,8 +10,8 @@ export default function Home() {
       <Nav />
       <main className="relative z-10 flex-1">
         <Hero />
-        <SkillsOrbit />
-        <ProcessScroll />
+        <Statement />
+        <PrinciplesStack />
       </main>
       <Footer />
     </>

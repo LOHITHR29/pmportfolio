@@ -1,130 +1,124 @@
-import Link from "next/link";
-import Blob from "./Blob";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+const words = ["ai", "product", "growth", "systems"];
 
 export default function Hero() {
+  const [idx, setIdx] = useState(0);
+  const [phase, setPhase] = useState<"in" | "out">("in");
+  const reduceRef = useRef(false);
+
+  useEffect(() => {
+    reduceRef.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduceRef.current) return;
+
+    let outTimer: number;
+    const cycle = window.setInterval(() => {
+      setPhase("out");
+      outTimer = window.setTimeout(() => {
+        setIdx((i) => (i + 1) % words.length);
+        setPhase("in");
+      }, 220);
+    }, 3000);
+
+    return () => {
+      window.clearInterval(cycle);
+      window.clearTimeout(outTimer);
+    };
+  }, []);
+
   return (
-    <section className="relative w-full min-h-[100vh] flex items-center justify-center overflow-hidden">
-      {/* Floating blobs */}
-      <Blob
-        className="-top-24 -left-24"
-        size={460}
-        blur={75}
-        colors={["#E87A4F", "#F4A261", "#FFB5A7"]}
-        drift="a"
-        opacity={0.55}
-      />
-      <Blob
-        className="top-10 -right-20"
-        size={380}
-        blur={70}
-        colors={["#C9B1FF", "#B8C5FF", "#A8D8EA"]}
-        drift="b"
-        opacity={0.55}
-      />
-      <Blob
-        className="top-32 left-1/2 -translate-x-1/2"
-        size={180}
-        blur={50}
-        colors={["#90E0A8", "#A8E6CF", "#B8E0D2"]}
-        drift="c"
-        opacity={0.55}
-      />
-      <Blob
-        className="-right-32 top-1/2"
-        size={500}
-        blur={90}
-        colors={["#A8E6CF", "#B8E0D2", "#C9B1FF"]}
-        drift="a"
-        opacity={0.4}
+    <section
+      className="relative w-full min-h-screen overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(145deg, #ffffff 0%, #f0f0f0 25%, #e8e8ff 55%, #c8c6fb 100%)",
+      }}
+    >
+      {/* Central blurred orb */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        style={{
+          width: "min(900px, 90vw)",
+          height: "min(900px, 90vw)",
+          background:
+            "radial-gradient(circle, rgba(80,79,237,0.22) 0%, rgba(80,79,237,0.07) 40%, transparent 70%)",
+          filter: "blur(80px)",
+        }}
       />
 
-      {/* Sparkles */}
-      <Sparkle className="top-[18%] right-[28%] w-6 h-6 spin-slow" />
-      <Sparkle className="bottom-[25%] left-[20%] w-5 h-5 spin-slow opacity-70" />
-      <Sparkle className="top-[35%] left-[12%] w-4 h-4 spin-slow opacity-60" />
+      <div className="relative h-screen flex flex-col">
+        {/* Top spacer (nav handles its own positioning) */}
+        <div className="flex-1" />
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6 lg:px-10 text-center">
-        {/* Pill badge */}
-        <div className="inline-flex mb-10 rounded-full border border-[color:var(--olive)] px-5 py-2 text-[13px] tracking-[0.06em] text-[color:var(--olive)] backdrop-blur-sm">
-          Product manager · Hyderabad, IN
+        {/* Bottom-left brand mark with rotating word */}
+        <div className="px-6 lg:px-10 pb-20 lg:pb-24">
+          <div className="mx-auto max-w-[1400px]">
+            <h1
+              className="font-display lowercase font-bold leading-[0.95] tracking-[-0.04em] text-[color:var(--dark)]"
+              style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+            >
+              <span
+                className="fade-up inline-block"
+                style={{ animationDelay: "80ms" }}
+              >
+                lohith
+              </span>
+              <span
+                className="fade-up inline-block text-[color:var(--text-subtle)]"
+                style={{ animationDelay: "220ms" }}
+              >
+                /
+              </span>
+              <span
+                className="fade-up inline-block relative align-baseline overflow-hidden text-[color:var(--primary)]"
+                style={{ animationDelay: "360ms" }}
+              >
+                <span
+                  key={`${idx}-${phase}`}
+                  className={`inline-block ${phase === "in" ? "word-enter" : "word-exit"}`}
+                >
+                  {words[idx]}
+                </span>
+              </span>
+            </h1>
+          </div>
         </div>
 
-        {/* Heading */}
-        <h1 className="font-display text-[44px] sm:text-[64px] lg:text-[84px] xl:text-[96px] leading-[1.05] tracking-[-0.02em] text-[color:var(--olive)] max-w-[16ch] mx-auto">
-          <span className="word-in" style={{ animationDelay: "0ms" }}>
-            Building
-          </span>{" "}
-          <span className="word-in" style={{ animationDelay: "80ms" }}>
-            products
-          </span>{" "}
-          <Link
-            href="/work"
-            aria-label="Work"
-            className="inline-block align-middle word-in hover:scale-105 transition-transform"
-            style={{ animationDelay: "160ms" }}
-          >
-            <InlineLaptop />
-          </Link>{" "}
-          <span className="word-in" style={{ animationDelay: "240ms" }}>
-            people
-          </span>{" "}
-          <span className="word-in" style={{ animationDelay: "320ms" }}>
-            come
-          </span>{" "}
-          <span
-            className="word-in italic"
-            style={{ animationDelay: "400ms" }}
-          >
-            back
-          </span>{" "}
-          <span className="word-in" style={{ animationDelay: "480ms" }}>
-            to.
-          </span>
-        </h1>
+        {/* Scroll hint */}
+        <div
+          className="px-6 lg:px-10 pb-8 lg:pb-10 fade-up"
+          style={{ animationDelay: "600ms" }}
+        >
+          <div className="mx-auto max-w-[1400px] flex items-end justify-between">
+            <div className="flex items-center gap-3 text-[color:var(--dark)]">
+              <span
+                aria-hidden
+                className="relative block h-px w-10 overflow-hidden"
+              >
+                <span className="scroll-line" />
+              </span>
+              <span
+                className="font-medium text-[11px] uppercase"
+                style={{ letterSpacing: "0.14em" }}
+              >
+                Scroll
+              </span>
+            </div>
+
+            <p
+              className="text-[11px] uppercase font-medium text-[color:var(--text-muted)]"
+              style={{ letterSpacing: "0.14em" }}
+            >
+              Product manager · Hyderabad, IN
+            </p>
+          </div>
+        </div>
       </div>
     </section>
-  );
-}
-
-function InlineLaptop() {
-  return (
-    <span className="relative inline-flex w-[80px] h-[52px] sm:w-[100px] sm:h-[66px] lg:w-[124px] lg:h-[82px] align-middle">
-      <svg viewBox="0 0 124 82" className="w-full h-full" aria-hidden>
-        <defs>
-          <linearGradient id="screen-grad" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0" stopColor="#C9B1FF" />
-            <stop offset="0.5" stopColor="#A8D8EA" />
-            <stop offset="1" stopColor="#90E0A8" />
-          </linearGradient>
-        </defs>
-        <rect x="6" y="4" width="112" height="62" rx="6" fill="#3A4A1E" />
-        <rect
-          x="10"
-          y="8"
-          width="104"
-          height="54"
-          rx="3"
-          fill="url(#screen-grad)"
-        />
-        <rect x="0" y="68" width="124" height="6" rx="3" fill="#3A4A1E" />
-        <rect x="48" y="68" width="28" height="3" fill="#4A5D23" />
-      </svg>
-    </span>
-  );
-}
-
-function Sparkle({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 24 24"
-      className={`absolute pointer-events-none ${className}`}
-    >
-      <path
-        d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z"
-        fill="#4A5D23"
-        opacity="0.35"
-      />
-    </svg>
   );
 }

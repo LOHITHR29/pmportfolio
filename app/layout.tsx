@@ -1,25 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Loader from "@/components/Loader";
 
-const inter = Inter({
+const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
+// Display alias to the same family — montone style is single-family
+const displayVar = { "--font-display": "var(--font-sans)" } as React.CSSProperties;
 
 export const metadata: Metadata = {
-  title: "Lohith Regalla",
+  title: "Lohith Regalla — Product manager",
   description:
-    "Lohith Regalla — selected work, side projects, and notes from collaborators.",
+    "Lohith Regalla — product manager working on AI features in Hyderabad. Selected work, case studies, publications.",
 };
 
 export default function RootLayout({
@@ -30,7 +27,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${manrope.variable} h-full antialiased`}
+      style={displayVar}
     >
       <body className="relative min-h-full flex flex-col bg-[color:var(--background)] text-[color:var(--text-strong)]">
         <Loader />
