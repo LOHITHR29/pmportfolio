@@ -1,52 +1,38 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 import "./globals.css";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
+import SmoothScroll from "@/components/SmoothScroll";
+import Loader from "@/components/Loader";
+
+const manrope = Manrope({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+// Display alias to the same family — montone style is single-family
+const displayVar = { "--font-display": "var(--font-sans)" } as React.CSSProperties;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lohith.me"),
-  title: {
-    default: "Lohith Regalla | Product Manager",
-    template: "%s | Lohith Regalla",
-  },
+  title: "Lohith Regalla — Product manager",
   description:
-    "Product manager and Rice University MEM student building AI products, growth systems, and clearer customer journeys.",
-  keywords: [
-    "Lohith Regalla",
-    "product manager",
-    "AI product manager",
-    "Rice University",
-    "product strategy",
-    "growth product",
-  ],
-  authors: [{ name: "Lohith Regalla" }],
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: "https://lohith.me",
-    title: "Lohith Regalla | Product Manager",
-    description:
-      "Product manager and Rice University MEM student building AI products and growth systems.",
-    siteName: "Lohith Regalla",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Lohith Regalla | Product Manager",
-    description:
-      "Product manager and Rice University MEM student building AI products and growth systems.",
-  },
+    "Lohith Regalla — product manager working on AI features in Hyderabad. Selected work, case studies, publications.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main-content">{children}</main>
-        <SiteFooter />
+    <html
+      lang="en"
+      className={`${manrope.variable} h-full antialiased`}
+      style={displayVar}
+    >
+      <body className="relative min-h-full flex flex-col bg-[color:var(--background)] text-[color:var(--text-strong)]">
+        <Loader />
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

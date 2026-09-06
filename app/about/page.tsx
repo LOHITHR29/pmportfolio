@@ -1,103 +1,51 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import PageIntro from "@/components/PageIntro";
-import { capabilities, education, leadership, site } from "@/data/portfolio";
-
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "About Lohith Regalla, a Rice University MEM student and product manager with a computer science foundation.",
-  alternates: { canonical: "/about" },
-};
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import AboutSection from "@/components/AboutSection";
 
 export default function AboutPage() {
   return (
     <>
-      <PageIntro
-        eyebrow="About"
-        title="A technical foundation shaped my product career."
-        description="I studied computer science, moved into product by working directly on customer journeys and delivery, and now study Engineering Management at Rice University."
-      />
-
-      <section className="section shell about-grid">
-        <div className="about-story">
-          <p className="eyebrow">My path</p>
-          <h2>I like the point where customer behavior meets system constraints.</h2>
-        </div>
-        <div className="long-copy">
-          <p>
-            My technical background helps me ask better questions about feasibility,
-            data, and failure modes. Product experience taught me that the right build
-            still depends on the problem, the user, and the evidence behind a priority.
-          </p>
-          <p>
-            At Ve, I work with conversation data, analytics, feedback, and growth
-            experiments around AI products. At Ambitio, I worked on student application
-            journeys and cross-functional delivery. I also led Universal Intelligence,
-            an open-source protocol published to Python and JavaScript ecosystems.
-          </p>
-          <p>
-            I am interested in AI product management, product strategy, product
-            marketing, go-to-market work, program management, and technology consulting.
-          </p>
-          <Link className="text-link" href={site.resume} download>
-            Download resume <span aria-hidden="true">↓</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="section surface-section">
-        <div className="shell two-column-section">
-          <div>
-            <p className="eyebrow">Education</p>
-            <h2>Learning across engineering and management.</h2>
-          </div>
-          <div className="stack-list">
-            {education.map((item) => (
-              <article key={item.school}>
-                <h3>{item.school}</h3>
-                <p>{item.degree}</p>
-                <span>{item.detail}</span>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section shell">
-        <div className="section-heading">
-          <p className="eyebrow">Capabilities</p>
-          <h2>Skills I use in the work.</h2>
-        </div>
-        <div className="capability-grid bordered">
-          {capabilities.map((group) => (
-            <article key={group.title}>
-              <h3>{group.title}</h3>
-              <ul>
-                {group.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section shell two-column-section leadership-section">
-        <div>
-          <p className="eyebrow">Leadership</p>
-          <h2>Communities I helped build.</h2>
-        </div>
-        <div className="stack-list">
-          {leadership.map((item) => (
-            <article key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.role}</p>
-              <span>{item.detail}</span>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Nav />
+      <main className="relative z-10 flex-1">
+        <AboutHero />
+        <AboutSection />
+      </main>
+      <Footer />
     </>
+  );
+}
+
+function AboutHero() {
+  return (
+    <section
+      className="relative w-full overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(145deg, #ffffff 0%, #f0f0f0 25%, #e8e8ff 55%, #c8c6fb 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12 pt-36 lg:pt-44 pb-20 lg:pb-28">
+        <p
+          className="text-[11px] uppercase font-medium text-[color:var(--text-muted)] mb-6"
+          style={{ letterSpacing: "0.14em" }}
+        >
+          (about)
+        </p>
+        <h1
+          className="font-display lowercase font-bold leading-[0.98] tracking-[-0.04em] text-[color:var(--text-strong)] max-w-[18ch]"
+          style={{ fontSize: "clamp(48px, 8vw, 128px)" }}
+        >
+          <span className="text-[color:var(--text-subtle)]">/</span>built like
+          an engineer.
+          <br />
+          ships like a pm.
+        </h1>
+        <p className="mt-8 max-w-[58ch] text-[15px] lg:text-[18px] leading-[1.6] text-[color:var(--text-muted)]">
+          The short version of the resume, the long version of the bias —
+          and the case studies that came out of arguing with myself on
+          weekends.
+        </p>
+      </div>
+    </section>
   );
 }
