@@ -95,9 +95,6 @@ export default function Statement() {
                   <span
                     aria-hidden="true"
                     className="block text-white/20"
-                    style={{
-                      textShadow: "0 14px 32px rgba(23, 19, 99, 0.42)",
-                    }}
                   >
                     {l}
                   </span>
@@ -106,7 +103,6 @@ export default function Statement() {
                     className="statement-line-fill pointer-events-none absolute inset-0 block text-white"
                     style={{
                       clipPath: "inset(0 100% 0 0)",
-                      textShadow: "0 10px 30px rgba(255, 255, 255, 0.16)",
                     }}
                   >
                     {l}
