@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { site } from "@/data/site";
 
 type Role = {
   id: string;
@@ -21,8 +20,8 @@ const roles: Role[] = [
     id: "ve",
     role: "Product Manager — AI Products",
     company: "Ve, the Intent Company",
-    dates: "Aug 2025 – Present",
-    location: site.location,
+    dates: "Aug 2025 – Jun 2026",
+    location: "Hyderabad, India",
     description:
       "Product work across AI assistant experiences, product analytics, customer feedback, and growth workflows.",
     logoBg: "#e8f5fc",
@@ -53,7 +52,7 @@ const roles: Role[] = [
     id: "ambitio",
     role: "Associate Product Manager",
     company: "Ambitio",
-    dates: "Sep 2023 – Aug 2025",
+    dates: "Jan 2024 – Aug 2025",
     location: "Bengaluru, India",
     description:
       "Joined as a Product Intern and earned a promotion to Associate Product Manager after nine months.",
@@ -83,7 +82,7 @@ const roles: Role[] = [
     id: "samsung",
     role: "Product Intern",
     company: "Samsung R&D",
-    dates: "Internship",
+    dates: "Mar 2023 – Aug 2023",
     location: "Bengaluru, India",
     description:
       "Supported release quality for Samsung Bixby and learned how platform teams make product decisions under reliability constraints.",
