@@ -30,11 +30,11 @@ export default function WorkPage() {
           <div className="mx-auto max-w-[1100px] px-6 lg:px-8">
             <p className="section-kicker">(selected project)</p>
             <h2 className="section-title max-w-[18ch]">
-              <span>/</span>open-source product work.
+              <span>/</span>internal product systems.
             </h2>
             <p className="section-description">
-              Universal Intelligence extends the same product practice into protocol
-              design, ecosystem strategy, documentation, and packaging.
+              Universal Intelligence brings current product context, planned work,
+              goals, and development guidance into one shared repository.
             </p>
             <div className="max-w-[540px]">
               <CaseStudyCard study={project} headingLevel="h3" />
