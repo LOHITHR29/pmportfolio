@@ -32,25 +32,40 @@ export default function Statement() {
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const fills = gsap.utils.toArray<HTMLElement>(".statement-line-fill");
+
+    if (reduce) {
+      gsap.set(fills, { clipPath: "inset(0 0% 0 0)", opacity: 1 });
+      return;
+    }
 
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".statement-line").forEach((line) => {
-        gsap.fromTo(
-          line,
-          { color: "rgba(255,255,255,0.7)" },
+      gsap.set(fills, {
+        clipPath: "inset(0 100% 0 0)",
+        opacity: 0.45,
+      });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      });
+
+      fills.forEach((fill, index) => {
+        timeline.to(
+          fill,
           {
-            color: "rgba(255,255,255,1)",
+            clipPath: "inset(0 0% 0 0)",
+            opacity: 1,
+            duration: 1,
             ease: "none",
-            scrollTrigger: {
-              trigger: line,
-              start: "top 75%",
-              end: "top 35%",
-              scrub: true,
-            },
           },
+          index * 0.72,
         );
       });
     }, sectionRef);
@@ -72,8 +87,30 @@ export default function Statement() {
               style={{ fontSize: "clamp(36px, 5vw, 80px)" }}
             >
               {lines.map((l, i) => (
-                <span key={i} className="statement-line block">
-                  {l}
+                <span
+                  key={i}
+                  className="statement-line relative block w-fit max-w-full"
+                  aria-label={l}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="block text-white/20"
+                    style={{
+                      textShadow: "0 14px 32px rgba(23, 19, 99, 0.42)",
+                    }}
+                  >
+                    {l}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="statement-line-fill pointer-events-none absolute inset-0 block text-white"
+                    style={{
+                      clipPath: "inset(0 100% 0 0)",
+                      textShadow: "0 10px 30px rgba(255, 255, 255, 0.16)",
+                    }}
+                  >
+                    {l}
+                  </span>
                 </span>
               ))}
             </h2>
