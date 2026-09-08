@@ -28,7 +28,7 @@ const roles: Role[] = [
     location: "Bengaluru, India",
     role: "Associate Product Manager",
     description:
-      "Owned AI feature delivery, growth analytics, and onboarding instrumentation. Spent most days in funnels — finding where people quietly dropped off and removing the reason.",
+      "Owned AI feature delivery, growth analytics, and onboarding instrumentation. Used funnel evidence to identify two high-friction steps and define the smallest useful fixes.",
     surface: "from-[#A8D8EA] via-[#C9B1FF] to-[#B8C5FF]",
     scene: "from-[#3a3a3a] to-[#1a1a1a]",
   },

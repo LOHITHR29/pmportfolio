@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { site } from "@/data/site";
 
 const words = ["ai", "product", "growth", "systems"];
 
@@ -60,7 +61,7 @@ export default function Hero() {
           <div className="mx-auto max-w-[1400px]">
             <h1
               className="font-display lowercase font-bold leading-[0.95] tracking-[-0.04em] text-[color:var(--dark)]"
-              style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+              style={{ fontSize: "clamp(44px, 8vw, 96px)" }}
             >
               <span
                 className="fade-up inline-block"
@@ -94,7 +95,7 @@ export default function Hero() {
           className="px-6 lg:px-10 pb-8 lg:pb-10 fade-up"
           style={{ animationDelay: "600ms" }}
         >
-          <div className="mx-auto max-w-[1400px] flex items-end justify-between">
+          <div className="mx-auto max-w-[1400px] flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
             <div className="flex items-center gap-3 text-[color:var(--dark)]">
               <span
                 aria-hidden
@@ -114,7 +115,7 @@ export default function Hero() {
               className="text-[11px] uppercase font-medium text-[color:var(--text-muted)]"
               style={{ letterSpacing: "0.14em" }}
             >
-              Product manager · Hyderabad, IN
+              Product manager · {site.location}
             </p>
           </div>
         </div>

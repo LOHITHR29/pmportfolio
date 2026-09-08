@@ -1,10 +1,12 @@
+import { site } from "@/data/site";
+
 type Social = { label: string; href: string };
 
 const socials: Social[] = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/lohithregalla" },
-  { label: "GitHub", href: "https://github.com/LOHITHR29" },
-  { label: "Twitter", href: "https://twitter.com/" },
-  { label: "Email", href: "mailto:lohithregalla123@gmail.com" },
+  { label: "LinkedIn", href: site.linkedin },
+  { label: "GitHub", href: site.github },
+  { label: "Resume", href: site.resume },
+  { label: "Email", href: `mailto:${site.email}` },
 ];
 
 export default function Footer() {
@@ -37,28 +39,28 @@ export default function Footer() {
 
             <p
               className="mt-8 lg:mt-10 max-w-[48ch] text-[15px] lg:text-[17px] leading-[1.6]"
-              style={{ color: "rgba(255,255,255,0.82)" }}
+              style={{ color: "rgba(255,255,255,0.9)" }}
             >
-              i&rsquo;m always up for a chat about product, AI features, and
-              early-stage builds. if you&rsquo;ve got something brewing — or
-              just want to swap notes — drop a line.
+              i&rsquo;m open to conversations about product, AI experiences,
+              growth, and early-stage products. if there&rsquo;s a role or problem
+              worth discussing, drop a line.
             </p>
 
             <div className="mt-10 lg:mt-14">
               <p
                 className="text-[11px] uppercase font-medium"
                 style={{
-                  color: "rgba(255,255,255,0.6)",
+                  color: "rgba(255,255,255,0.9)",
                   letterSpacing: "0.18em",
                 }}
               >
                 get in touch
               </p>
               <a
-                href="mailto:lohithregalla123@gmail.com"
+                href={`mailto:${site.email}`}
                 className="link-underline before:bg-white inline-block mt-2 text-[18px] lg:text-[22px]"
               >
-                lohithregalla123@gmail.com
+                {site.email}
               </a>
             </div>
           </div>
@@ -108,13 +110,13 @@ export default function Footer() {
                 style={{ backgroundColor: "#7cf29a" }}
               />
             </span>
-            <span>open to product roles · q2 2026</span>
+            <span>open to product roles in the U.S.</span>
           </div>
 
           {/* Center — copyright + signature, on one tight line */}
           <p
             className="lg:text-center"
-            style={{ color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}
+            style={{ color: "rgba(255,255,255,0.9)", letterSpacing: "0.02em" }}
           >
             © {year} lohith regalla · all rights reserved
           </p>
@@ -122,9 +124,9 @@ export default function Footer() {
           {/* Right — location + live timezone */}
           <p
             className="lg:text-right"
-            style={{ color: "rgba(255,255,255,0.65)", letterSpacing: "0.02em" }}
+            style={{ color: "rgba(255,255,255,0.9)", letterSpacing: "0.02em" }}
           >
-            hyderabad, india · ist (utc +5:30)
+            {site.location}
           </p>
         </div>
       </div>

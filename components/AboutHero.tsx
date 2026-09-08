@@ -79,10 +79,10 @@ export default function AboutHero() {
             <p className="text-[14px] lg:text-[16px] leading-[1.65] text-[color:var(--olive-light)]">
               Product manager working on AI-powered features at Ve in
               Hyderabad. Before that, growth and onboarding work at Ambito,
-              and mobile R&amp;D at Samsung. My day-to-day sits at the seam
-              between PM, design, and engineering — framing problems,
-              shipping in slices, and watching behaviour close enough to
-              know whether the slice was right.
+              and mobile R&amp;D at Samsung. I work with design and
+              engineering to frame problems, make tradeoffs explicit, ship
+              in small slices, and use product evidence to decide what comes
+              next.
             </p>
             <p className="text-[14px] lg:text-[16px] leading-[1.65] text-[color:var(--olive)] font-medium">
               Curious by default, collaborative by choice.

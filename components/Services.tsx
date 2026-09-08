@@ -23,7 +23,7 @@ const skills: Skill[] = [
   {
     n: "04",
     title: "cross-functional execution",
-    desc: "Sitting on the seam between PM, design, and engineering — keeping decisions documented, tradeoffs visible, and the end goal close enough that everyone steers toward it. PRDs that survive the sprint.",
+    desc: "Keeping product, design, and engineering aligned through documented decisions, visible tradeoffs, and clear release criteria. Writing PRDs that remain useful through delivery.",
   },
   {
     n: "05",

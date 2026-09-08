@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const hellos = [
   "Hello",
@@ -23,12 +24,16 @@ const DURATION = 3000;
 const HELLO_INTERVAL = 130;
 
 export default function Loader() {
+  const pathname = usePathname();
+  const isPresentation = pathname.endsWith("/presentation");
   const [progress, setProgress] = useState(0);
   const [helloIdx, setHelloIdx] = useState(0);
   const [hidden, setHidden] = useState(false);
   const [removed, setRemoved] = useState(false);
 
   useEffect(() => {
+    if (isPresentation) return;
+
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const duration = reduce ? 700 : DURATION;
     const start = performance.now();
@@ -53,9 +58,9 @@ export default function Loader() {
     return () => {
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isPresentation]);
 
-  if (removed) return null;
+  if (isPresentation || removed) return null;
 
   return (
     <div

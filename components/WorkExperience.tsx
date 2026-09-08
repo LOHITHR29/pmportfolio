@@ -1,6 +1,5 @@
 import Image from "next/image";
-
-type Logo = { src: string; alt: string; widthRatio: number };
+import { site } from "@/data/site";
 
 type Role = {
   id: string;
@@ -11,7 +10,7 @@ type Role = {
   description: string;
   logoBg: string;
   brand: string;
-  logo: Logo;
+  logo: { src: string; alt: string; widthRatio: number };
   story: string[];
   metrics: { value: string; label: string }[];
   skills: string[];
@@ -20,102 +19,92 @@ type Role = {
 const roles: Role[] = [
   {
     id: "ve",
-    role: "Product Manager — AI Agents & Platform",
+    role: "Product Manager — AI Products",
     company: "Ve, the Intent Company",
-    dates: "Aug 2025 — Present",
-    location: "Hyderabad, India",
+    dates: "Aug 2025 – Present",
+    location: site.location,
     description:
-      "Zero-to-one PM on the agent product at Ve — the intent company. Acting as the seam between engineering, design, and marketing — owning the product across safety, platform, customer-comms, and the GTM layer that takes capability to market.",
+      "Product work across AI assistant experiences, product analytics, customer feedback, and growth workflows.",
     logoBg: "#e8f5fc",
-    brand: "#2BA9DC",
+    brand: "#176F8F",
     logo: { src: "/logos/ve.png", alt: "Ve", widthRatio: 1.85 },
     story: [
-      "AI safety — scoped the jailbreak and prompt-injection eval rubrics, researched manipulation patterns specific to intent-based agents, and wired the mitigations directly into the pipeline so the user never sees them but an operator absolutely does.",
-      "Platform & tooling — drove infrastructure cost reductions, pushed workflow automation that cut manual deploy steps, and shipped an internal review agent that lints text + policy before any pipeline goes out (issues caught at draft time, not post-launch).",
-      "Customer & GTM — owned Intercom end-to-end (integration, behaviour-triggered automation, and the UX of every help conversation). Doubled as the product-support PM converting tickets into roadmap signal, and partnered with marketing on launch decks, blog narratives, and reproducible sales-demo scripts.",
+      "Analyzed 1,500+ user conversations to identify failure patterns, improve context-aware assistant behavior, and turn support signals into product priorities.",
+      "Worked across onboarding, proactive product experiences, PRDs, sprint planning, experimentation, and Mixpanel analysis to improve successful user outcomes and reduce fallback behavior.",
+      "Supported AI marketing workflows that produced 50+ ad creative variants and helped run paid search and content experiments, including tests that improved click-through rate.",
     ],
     metrics: [
-      { value: "0 → 1", label: "greenfield agent product — shipped end-to-end from spec to launch" },
-      { value: "Safety v2", label: "agent-safety guardrails covering jailbreak + prompt injection" },
-      { value: "Tickets → specs", label: "product-support loop feeding the next sprint's roadmap" },
+      { value: "1,500+", label: "user conversations analyzed" },
+      { value: "50+", label: "ad creative variants supported" },
+      { value: "signal → sprint", label: "research translated into priorities" },
     ],
     skills: [
-      "0 → 1 product",
-      "PRDs & spec writing",
-      "Prototyping",
-      "Discovery + user research",
-      "Roadmapping",
-      "AI safety",
-      "AI agent design",
-      "Platform infrastructure",
-      "Workflow automation",
-      "Internal tooling",
-      "Intercom + customer comms",
-      "Product support",
-      "Product marketing",
-      "Stakeholder alignment",
+      "AI product management",
+      "Conversation analysis",
+      "Mixpanel",
+      "PRDs",
+      "Prioritization",
+      "Sprint planning",
+      "Experimentation",
+      "GTM",
     ],
   },
   {
     id: "ambitio",
     role: "Associate Product Manager",
     company: "Ambitio",
-    dates: "Sep 2023 — Aug 2025",
-    location: "Bangalore, India",
+    dates: "Sep 2023 – Aug 2025",
+    location: "Bengaluru, India",
     description:
-      "Joined as Product Intern on the student university-application platform and was promoted to Associate Product Manager nine months in. Two years of agile delivery, journey redesign, and cross-functional execution.",
+      "Joined as a Product Intern and earned a promotion to Associate Product Manager after nine months.",
     logoBg: "#fdecec",
     brand: "#E40510",
     logo: { src: "/logos/ambito.png", alt: "Ambitio", widthRatio: 1 },
     story: [
-      "Started as Product Intern in Sep 2023. Followed agile practices — sprint planning, backlog grooming, and ongoing feature delivery alongside product and operations. The internship was a tour through the full product loop: research → spec → ship → measure.",
-      "Redesigned key steps in the student application journey to simplify decision flows and reduce friction. Introduced clearer progress-tracking features that improved application-step completion by ~9%. Ran user research with students and mentors to identify pain points in university selection and the broader application workflow — the discovery directly fed the next roadmap.",
-      "Promoted to Associate Product Manager in Jun 2024 after consistent ownership and cross-functional execution. Led agile sprints across product, engineering, and operations — owning friction-point discovery, feature iteration, and stakeholder alignment with the operations team. Application completion and engagement metrics moved ~15% during the APM tenure.",
+      "Redesigned steps in the university application journey and introduced clearer progress tracking, contributing to an approximately 9% improvement in application-step completion.",
+      "Led sprint planning, backlog refinement, user research, and coordination across product, engineering, and operations.",
+      "Iterated on application workflows during a period when completion and engagement improved by approximately 15%.",
     ],
     metrics: [
-      { value: "+15%", label: "completion + engagement during APM tenure" },
-      { value: "+9%", label: "application-step completion as Intern" },
-      { value: "9 months", label: "from Product Intern to APM promotion" },
+      { value: "~15%", label: "completion and engagement improvement" },
+      { value: "~9%", label: "application-step completion improvement" },
+      { value: "9 months", label: "from intern to APM promotion" },
     ],
     skills: [
       "User research",
       "Journey design",
-      "Agile sprints",
+      "Agile delivery",
+      "Backlog refinement",
       "Stakeholder alignment",
-      "Cross-functional execution",
-      "Friction analysis",
       "Feature iteration",
-      "Roadmap",
     ],
   },
   {
     id: "samsung",
     role: "Product Intern",
     company: "Samsung R&D",
-    dates: "2021 — 2022",
+    dates: "Internship",
     location: "Bengaluru, India",
     description:
-      "Product internship on the Bixby voice platform — owned the regression-test workflow for new voice intents and the release-stability practices that decide ship-or-no-ship at platform scale.",
+      "Supported release quality for Samsung Bixby and learned how platform teams make product decisions under reliability constraints.",
     logoBg: "#eaecf6",
     brand: "#1428A0",
     logo: { src: "/logos/samsung.png", alt: "Samsung", widthRatio: 5 },
     story: [
-      "Product intern on the Bixby voice platform team. Owned regression-test workflows for new voice intents — wrote test plans, ran them across regional builds, and triaged the gaps before they reached production.",
-      "Sat between QA, the model team, and the platform PMs — translating engineering signal into product decisions about which intents were ready to ship and which needed another iteration. Every release-readiness call started from a shared dashboard I helped scope.",
-      "Where I learned that 'platform stability' isn't a single number — it's a portfolio of small disciplines that together decide whether 50M+ users trust the product the next time they speak.",
+      "Helped test voice intents across builds, document issues, and support release-readiness discussions with product and engineering partners.",
+      "Translated regression findings into clear product feedback for the Bixby voice experience.",
     ],
     metrics: [
-      { value: "120+ intents", label: "regression-tested across regional builds" },
-      { value: "3 releases", label: "shipped under shared QA + product ownership" },
-      { value: "0 P0", label: "voice-intent regressions in scope, post-launch" },
+      { value: "Bixby", label: "voice platform experience" },
+      { value: "Release QA", label: "regression and readiness work" },
+      { value: "Cross-team", label: "product and engineering feedback" },
     ],
     skills: [
-      "Product specs",
-      "QA workflows",
       "Voice platforms",
-      "Release management",
-      "Cross-team",
-      "Triage",
+      "Regression testing",
+      "Release readiness",
+      "Issue triage",
+      "Cross-functional work",
     ],
   },
 ];
@@ -135,143 +124,84 @@ export default function WorkExperience() {
           Experience
         </h2>
 
-        <div
-          className="mt-10 lg:mt-12 flex flex-col"
-          style={{ borderTop: "1px solid rgba(17,17,17,0.1)" }}
-        >
-          {roles.map((r) => (
+        <div className="mt-10 lg:mt-12 flex flex-col border-t border-[color:rgba(17,17,17,0.1)]">
+          {roles.map((role) => (
             <article
-              key={r.id}
-              className="py-12 lg:py-16"
-              style={{ borderBottom: "1px solid rgba(17,17,17,0.1)" }}
+              key={role.id}
+              className="py-12 lg:py-16 border-b border-[color:rgba(17,17,17,0.1)]"
             >
-              {/* Header — logo + role meta */}
-              <div className="flex items-center gap-4 lg:gap-6 mb-10">
-                <div className="shrink-0">
-                  <div
-                    className="inline-flex items-center justify-center rounded-xl"
-                    style={{
-                      height: "56px",
-                      minWidth: "56px",
-                      paddingLeft: "14px",
-                      paddingRight: "14px",
-                      backgroundColor: r.logoBg,
-                    }}
-                  >
-                    <Image
-                      src={r.logo.src}
-                      alt={r.logo.alt}
-                      width={Math.round(32 * r.logo.widthRatio)}
-                      height={32}
-                      style={{
-                        width: "auto",
-                        height: "32px",
-                        objectFit: "contain",
-                      }}
-                      priority={false}
-                    />
-                  </div>
+              <div className="flex items-center gap-4 lg:gap-6 mb-8 lg:mb-10">
+                <div
+                  className="inline-flex shrink-0 items-center justify-center rounded-xl px-[14px] h-14 min-w-14"
+                  style={{ backgroundColor: role.logoBg }}
+                >
+                  <Image
+                    src={role.logo.src}
+                    alt={role.logo.alt}
+                    width={Math.round(32 * role.logo.widthRatio)}
+                    height={32}
+                    style={{ width: "auto", height: "32px", objectFit: "contain" }}
+                  />
                 </div>
-
                 <div className="flex-1 min-w-0">
-                  <h3
-                    className="font-bold leading-[1.3] text-[15px] lg:text-[17px]"
-                    style={{ color: "#1a1a1a" }}
-                  >
-                    {r.role}
+                  <h3 className="font-bold leading-[1.3] text-[15px] lg:text-[17px]">
+                    {role.role}
                   </h3>
-                  <p
-                    className="mt-1 text-[13px] lg:text-[14px] leading-[1.4]"
-                    style={{ color: "rgba(17,17,17,0.55)" }}
-                  >
-                    <span>{r.company}</span>
+                  <p className="mt-1 text-[13px] lg:text-[14px] leading-[1.5] text-[color:rgba(17,17,17,0.65)]">
+                    <span>{role.company}</span>
                     <span className="mx-2" aria-hidden>·</span>
-                    <span>{r.dates}</span>
+                    <span>{role.dates}</span>
                     <span className="mx-2 hidden sm:inline" aria-hidden>·</span>
-                    <span className="hidden sm:inline">{r.location}</span>
+                    <span className="hidden sm:inline">{role.location}</span>
                   </p>
                 </div>
               </div>
 
-              {/* Detail body — always visible */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8">
                 <div className="lg:col-start-2 lg:col-span-11">
-                  {/* Lead description */}
-                  <p
-                    className="text-[15px] lg:text-[17px] leading-[1.6] mb-8"
-                    style={{ color: "rgba(17,17,17,0.78)" }}
-                  >
-                    {r.description}
+                  <p className="text-[15px] lg:text-[17px] leading-[1.6] mb-8 text-[color:rgba(17,17,17,0.78)]">
+                    {role.description}
                   </p>
-
-                  {/* Story paragraphs */}
-                  <div className="flex flex-col gap-5 mb-10 max-w-[68ch]">
-                    {r.story.map((para, i) => (
-                      <p
-                        key={i}
-                        className="text-[14px] lg:text-[16px] leading-[1.65]"
-                        style={{ color: "rgba(17,17,17,0.7)" }}
+                  <ul className="flex flex-col gap-4 mb-10 max-w-[72ch]">
+                    {role.story.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 text-[14px] lg:text-[16px] leading-[1.65] text-[color:rgba(17,17,17,0.7)]"
                       >
-                        {para}
-                      </p>
+                        <span className="list-dot" aria-hidden />
+                        <span>{item}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
 
-                  {/* Metrics */}
-                  <p
-                    className="text-[11px] uppercase font-medium mb-4"
-                    style={{ color: "#6b6b66", letterSpacing: "0.18em" }}
-                  >
-                    what shipped
-                  </p>
+                  <p className="section-label">evidence</p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
-                    {r.metrics.map((m, i) => (
+                    {role.metrics.map((metric) => (
                       <div
-                        key={i}
-                        className="rounded-2xl p-4 lg:p-5"
-                        style={{
-                          backgroundColor: "#f7f7f5",
-                          border: "1px solid rgba(17,17,17,0.06)",
-                        }}
+                        key={metric.label}
+                        className="rounded-2xl p-4 lg:p-5 bg-[#f7f7f5] border border-[color:rgba(17,17,17,0.06)]"
                       >
                         <p
-                          className="font-bold leading-[1.0] tracking-[-0.02em]"
-                          style={{
-                            color: r.brand,
-                            fontSize: "clamp(20px, 2.2vw, 28px)",
-                          }}
+                          className="font-bold leading-[1.05] tracking-[-0.02em]"
+                          style={{ color: role.brand, fontSize: "clamp(20px, 2.2vw, 28px)" }}
                         >
-                          {m.value}
+                          {metric.value}
                         </p>
-                        <p
-                          className="mt-2 text-[13px] lg:text-[14px] leading-[1.45]"
-                          style={{ color: "rgba(17,17,17,0.7)" }}
-                        >
-                          {m.label}
+                        <p className="mt-2 text-[13px] lg:text-[14px] leading-[1.45] text-[color:rgba(17,17,17,0.7)]">
+                          {metric.label}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  {/* Skills */}
-                  <p
-                    className="text-[11px] uppercase font-medium mb-3"
-                    style={{ color: "#6b6b66", letterSpacing: "0.18em" }}
-                  >
-                    stack & focus
-                  </p>
+                  <p className="section-label">stack &amp; focus</p>
                   <div className="flex flex-wrap gap-2">
-                    {r.skills.map((s) => (
+                    {role.skills.map((skill) => (
                       <span
-                        key={s}
-                        className="inline-flex items-center text-[12px] lg:text-[13px] lowercase rounded-full px-3 py-1"
-                        style={{
-                          border: "1px solid rgba(17,17,17,0.14)",
-                          color: "rgba(17,17,17,0.78)",
-                          letterSpacing: "0.02em",
-                        }}
+                        key={skill}
+                        className="inline-flex items-center text-[12px] lg:text-[13px] lowercase rounded-full px-3 py-1 border border-[color:rgba(17,17,17,0.14)] text-[color:rgba(17,17,17,0.78)] tracking-[0.02em]"
                       >
-                        {s}
+                        {skill}
                       </span>
                     ))}
                   </div>

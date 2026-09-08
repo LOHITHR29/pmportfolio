@@ -21,10 +21,10 @@ const projects: Project[] = [
     role: "Independent product case study",
     year: "2024",
     summary:
-      "Sizing an underserved segment, mapping their onboarding journey, and prioritising what to ship next so a stalled growth curve can move again.",
-    tags: ["case study", "growth", "RICE"],
+      "A focused discovery concept that connects observed trust barriers to one MVP and the measures that would validate it.",
+    tags: ["case study", "discovery", "experimentation"],
     surface: "from-[#E50914] via-[#B0060F] to-[#3A0205]",
-    href: "https://drive.google.com/file/d/1hYQZuLYdAJ93T-Gw4OKU400QdHF3dMEG/view?usp=drive_link",
+    internal: "/case-studies/netflix-india-growth/presentation",
   },
   {
     num: "02",

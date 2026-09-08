@@ -23,14 +23,13 @@ export default function Nav() {
   const links = [
     { label: "Home", href: "/" },
     { label: "Work", href: "/work" },
+    { label: "Case studies", href: "/case-studies" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
 
   return (
     <header className="fixed top-0 inset-x-0 z-[100] bg-transparent">
-      {/* Whole bar fades + lifts away on scroll — brand mark and links go
-          together, leaving the page completely uncluttered while reading. */}
       <div
         className={`mx-auto max-w-[1400px] px-6 lg:px-10 py-5 lg:py-6 flex items-start justify-between gap-4 transition-all duration-300 ease-out ${
           scrolled
@@ -48,12 +47,17 @@ export default function Nav() {
 
         <nav
           aria-label="Primary"
-          className="flex flex-col items-end gap-1 text-[14px] text-[#1a1a1a]"
+          className="flex flex-col items-end gap-1 text-[14px] text-[color:var(--text-strong)]"
         >
           {links.map((l) => {
             const active = isActive(l.href);
             return (
-              <Link key={l.href} href={l.href} className="link-underline">
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={active ? "page" : undefined}
+                className="link-underline"
+              >
                 {active && <span aria-hidden>• </span>}
                 {l.label}
               </Link>

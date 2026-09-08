@@ -4,16 +4,13 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// The feature-factory vs outcome-driven distinction is the through-line
-// of the modern PM canon — Cagan, Torres, John Cutler all hammer it.
-// The manifesto picks a side, then admits the cost of doing so.
 const lines = [
-  "there are two kinds of pms.",
-  "ones who ship features.",
-  "ones who move metrics.",
-  "i'd rather be the second —",
-  "even when the first",
-  "looks busier.",
+  "good product work",
+  "connects the whole path:",
+  "a clear problem.",
+  "a deliberate decision.",
+  "a useful release.",
+  "evidence for what comes next.",
 ];
 
 const tools = [
@@ -43,7 +40,7 @@ export default function Statement() {
       gsap.utils.toArray<HTMLElement>(".statement-line").forEach((line) => {
         gsap.fromTo(
           line,
-          { color: "rgba(255,255,255,0.25)" },
+          { color: "rgba(255,255,255,0.7)" },
           {
             color: "rgba(255,255,255,1)",
             ease: "none",
@@ -85,7 +82,7 @@ export default function Statement() {
 
         {/* Tool ticker — infinite horizontal marquee */}
         <div className="relative pb-12 lg:pb-16 overflow-hidden">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-white/55 px-6 lg:px-10 mb-4 mx-auto max-w-[1400px]">
+          <p className="text-[11px] uppercase tracking-[0.18em] text-white/90 px-6 lg:px-10 mb-4 mx-auto max-w-[1400px]">
             (tools I reach for)
           </p>
           <div className="relative w-full overflow-hidden">

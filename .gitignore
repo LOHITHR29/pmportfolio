@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.*
-# nested deps inside sub-projects (e.g. the spotify case-study deck)
+# nested dependencies
 **/node_modules
 .yarn/*
 !.yarn/patches

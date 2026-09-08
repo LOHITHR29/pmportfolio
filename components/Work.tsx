@@ -21,7 +21,7 @@ const projects: Project[] = [
     location: "Bengaluru, India",
     role: "Associate Product Manager",
     description:
-      "Owned AI-feature delivery, growth analytics, and onboarding instrumentation. Spent a lot of time on activation funnels — finding where people quietly dropped off and removing the reason — plus PRDs, sprint releases, and mentoring user research.",
+      "Owned AI-feature delivery, growth analytics, and onboarding instrumentation. Used activation funnels to identify two high-friction steps, then translated the evidence into PRDs, sprint releases, and follow-up research.",
     surface: "from-[#e8eef7] via-[#cfd9e8] to-[#9aaecb]",
   },
   {
